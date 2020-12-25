@@ -18,7 +18,8 @@ export class ShoppingComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  ngAfterContentInit() : void {
+  onIngAdded(data){
+    this.ingrediants.push(data)
   }
 
 }
