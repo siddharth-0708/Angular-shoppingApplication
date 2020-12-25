@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { recipe } from '../../recipies.model';
 
 @Component({
   selector: 'app-recipies-item',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipies-item.component.css']
 })
 export class RecipiesItemComponent implements OnInit {
+  @Input() recipie:recipe
 
   constructor() { }
 

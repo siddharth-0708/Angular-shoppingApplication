@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-mid-12">
-      <app-header>Header</app-header>
-      <app-recipies></app-recipies>
-      <app-shopping></app-shopping>
+      <app-header (featureSelected) = 'onNavigate($event)'>Header</app-header>
+      <app-recipies *ngIf = "loadedFeature === 'recipie'"></app-recipies>
+      <app-shopping [cashew] = 'kaaju' *ngIf = "loadedFeature === 'shopping'">
+      </app-shopping>
     </div>
   </div>
 </div>
