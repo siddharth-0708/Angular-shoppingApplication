@@ -11,6 +11,7 @@ import { RecipiesDetailsComponent } from './recipies/recipies-details/recipies-d
 import { RecipiesItemComponent } from './recipies/recipies-list/recipies-item/recipies-item.component';
 import { ShoppingEditComponent } from './shopping/shopping-edit/shopping-edit.component';
 import { DropDownDirective } from './shared/dropdown.directive';
+import { ShoppingServices } from './shopping/shopping.services';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { DropDownDirective } from './shared/dropdown.directive';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ShoppingServices], //now this can be used in everywhere
   bootstrap: [AppComponent]
 }) //haha
 export class AppModule { }
