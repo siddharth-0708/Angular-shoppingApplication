@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Params} from '@angular/router';
+import { ActivatedRoute,Params, Router} from '@angular/router';
 import { recipe } from '../recipies.model';
 import {RecipiesService} from '../recipies.service'
 
@@ -13,7 +13,7 @@ export class RecipiesDetailsComponent implements OnInit {
   id:number
 
   constructor(private recipieService:RecipiesService, 
-    private route:ActivatedRoute
+    private route:ActivatedRoute, private router: Router,
     ) { }
 
   ngOnInit(): void {
@@ -26,6 +26,10 @@ export class RecipiesDetailsComponent implements OnInit {
   }
   onAddToShoppingList() {
     this.recipieService.addIngrediantsToShopping(this.recipeName.ingrediants)
+  }
+  onEditClick() {
+    this.router.navigate(['edit'], {relativeTo:this.route})
+    //this.router.navigate(['../','edit'], {relativeTo:this.route})--> Its already in recipies/0 so ../ will go to recipies and then to edit
   }
 
 }
