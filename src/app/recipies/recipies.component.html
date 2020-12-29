@@ -4,12 +4,6 @@
         ></app-recipies-list>
     </div>
     <div class="col-md-7">
-        <app-recipies-details 
-        *ngIf = "selectedRecipie; else default" 
-        [recipeName] = "selectedRecipie"
-         ></app-recipies-details>
-        <ng-template #default>
-            <p> Please Select an Recipie</p>
-        </ng-template>
+        <router-outlet></router-outlet> <!-- this is needed to render the routing-->
     </div>
 </div>

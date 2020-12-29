@@ -27,6 +27,9 @@ export class RecipiesService {
       getRecipies(){
           return this.recipies.slice();
       }
+      getRecipe(index:number){
+        return this.recipies[index]
+      }
       addIngrediantsToShopping(ingrediant:ingrediant[]){
         this.shoppingService.showIngrediants(ingrediant);
       }
