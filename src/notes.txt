@@ -20,3 +20,4 @@ Flow is parent--> goes in parent checks <outlet-router> ie the children--> if ye
         ]},
     ]},
 important**: [routerLink] also acts like <outlet-router>. It will load the corresponding component and look for data in init
+On every router link call, init is called ie component is reloaded
