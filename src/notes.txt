@@ -1,0 +1,22 @@
+angular flow: 
+A) First all modules are loaded
+B) selector is used to render the component. If you do not mention it, it will never go to the component.ts part
+C) Routers work flow: At start parent routes are checked and when it goes to that particular parent then its childeren
+are checked. So if you want to have navigation inside child of parent, you need to render <app-router> in HTML so that when
+the parent is loaded it will go to <app-router> and render according to the URL.
+Suppose in localhost/parent , parent itself is not defined, then it wont go fuurther.
+The flow is root--> component---> children (if it is already in children and u are trying to loop it will take only once. It checked once in router and again it wont check.)
+http://localhost:4200/recipes/0/edit ---> see from router point of view. checks in parent recipie(start is from app to recipie), recipie component ie recipie.HTML
+is loaded. Then again in parent if <router-outlet> is there then checks for the router(here the start is from recipies to children) and again if in that recipie component is present
+it is loaded. Now again it will check for the children of /0/edit in <outlet-router>
+Flow is parent--> goes in parent checks <outlet-router> ie the children--> if yes gets loaded--> again checks sub children of the children if <outlet-router> is present
+
+{path:'recipes', component:RecipiesComponent, children: [
+        {path:'', component:RecipiesStartComponent},
+        {path:'new',component:EditRecipiesComponent},
+        {path:':id',component:RecipiesDetailsComponent},
+        {path:':id/edit',component:RecipiesComponent, children:[
+            {path:'', component:RecipiesComponent},
+        ]},
+    ]},
+important**: [routerLink] also acts like <outlet-router>. It will load the corresponding component and look for data in init
