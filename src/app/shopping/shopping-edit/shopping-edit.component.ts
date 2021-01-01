@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ingrediant } from '../../shared/ingrediant.model';
 import { ShoppingServices } from '../../shopping/shopping.services';
 
@@ -8,18 +9,45 @@ import { ShoppingServices } from '../../shopping/shopping.services';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit {
-  @ViewChild('nameInput', {static: false}) nameInput: ElementRef;
-  @ViewChild('amountInput', {static: false}) amountInput: ElementRef;
+  editMode= false;
+  editedIndex:number;
+  editedItem:ingrediant
+  @ViewChild('f', {static: true}) f: NgForm;
+
 
   constructor(private shoppingService: ShoppingServices) { }
 
   ngOnInit(): void {
+    this.shoppingService.startedEditing.subscribe(
+      (index:number) =>{
+        this.editMode = true
+        this.editedIndex = index
+        this.editedItem = this.shoppingService.findIngrediant(index)
+        this.f.setValue({
+          Name:this.editedItem.name,
+          Amount: this.editedItem.amount
+        })
+      }
+  )
+}
+  onAdd(form: NgForm){
+    const val = form.value
+    const newIng = new ingrediant(val.Name, val.Amount)
+    if(this.editMode){
+      this.shoppingService.updateIngrediants(this.editedIndex,newIng)
+    } else {
+      this.shoppingService.addIngrediants(newIng)
+    }
+    this.editMode = false
+    this.f.reset()
   }
-  onAdd(){
-    const ingName = this.nameInput.nativeElement.value;
-    const ingAmount = this.amountInput.nativeElement.value;
-    const newIng = new ingrediant(ingName, ingAmount)
-    this.shoppingService.addIngrediants(newIng)
+  onClear(){
+    this.editMode = false
+    this.f.reset()
   }
-
+  onDelete(){
+    this.shoppingService.deleteIngrediants(this.editedIndex)
+    this.editMode = false
+    this.f.reset()
+  }
 }
