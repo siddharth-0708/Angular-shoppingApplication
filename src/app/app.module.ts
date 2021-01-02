@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -12,6 +12,7 @@ import { RecipiesItemComponent } from './recipies/recipies-list/recipies-item/re
 import { ShoppingEditComponent } from './shopping/shopping-edit/shopping-edit.component';
 import { DropDownDirective } from './shared/dropdown.directive';
 import { ShoppingServices } from './shopping/shopping.services';
+import { RecipiesService } from './recipies/recipies.service';
 import { AppRouterModule } from './app-router.module';
 import { EditRecipiesComponent } from './recipies/edit-recipies/edit-recipies.component';
 
@@ -31,9 +32,10 @@ import { EditRecipiesComponent } from './recipies/edit-recipies/edit-recipies.co
   imports: [
     BrowserModule,
     FormsModule,
-    AppRouterModule
+    AppRouterModule,
+    ReactiveFormsModule
     ],
-  providers: [ShoppingServices], //now this can be used in everywhere
+  providers: [ShoppingServices, RecipiesService], //now this can be used in everywhere
   bootstrap: [AppComponent]
 }) //haha
 export class AppModule { }

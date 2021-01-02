@@ -5,6 +5,7 @@ import { ShoppingServices } from '../shopping/shopping.services';
 
 @Injectable() //inserting service into service
 export class RecipiesService {
+  recipieChanged = new EventEmitter<recipe[]>()
     
    private recipies: recipe[] = [
         new recipe('cashew', 
@@ -29,7 +30,19 @@ export class RecipiesService {
       getRecipe(index:number){
         return this.recipies[index]
       }
+      addRecipie(recipie:recipe){
+        this.recipies.push(recipie)
+        this.recipieChanged.emit(this.recipies.slice())
+      }
+      updateRecipie(index:number, newRecipie:recipe){
+        this.recipies[index] = newRecipie
+        this.recipieChanged.emit(this.recipies.slice())
+      }
       addIngrediantsToShopping(ingrediant:ingrediant[]){
         this.shoppingService.showIngrediants(ingrediant);
+      }
+      deleteRecipie(index:number){
+        this.recipies.splice(index,1)
+        this.recipieChanged.emit(this.recipies.slice())
       }
 }

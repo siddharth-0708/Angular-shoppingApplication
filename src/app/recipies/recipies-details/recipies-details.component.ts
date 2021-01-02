@@ -31,5 +31,9 @@ export class RecipiesDetailsComponent implements OnInit {
     this.router.navigate(['edit'], {relativeTo:this.route})
     //this.router.navigate(['../','edit'], {relativeTo:this.route})--> Its already in recipies/0 so ../ will go to recipies and then to edit
   }
+  onDelete(){
+    this.recipieService.deleteRecipie(this.id);
+    this.router.navigate(['/recipes'])
+  }
 
 }
