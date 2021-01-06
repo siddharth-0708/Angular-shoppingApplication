@@ -5,6 +5,7 @@ import { ShoppingComponent } from "./shopping/shopping.component";
 import { RecipiesStartComponent } from "./recipies/recipies-start/recipies-start.component";
 import { RecipiesDetailsComponent } from "./recipies/recipies-details/recipies-details.component";
 import { EditRecipiesComponent } from "./recipies/edit-recipies/edit-recipies.component";
+import { AuthComponent } from "./auth/auth.component";
 
 const Approutes: Routes = [
     {path:'', redirectTo:'/recipes', pathMatch:'full'},
@@ -14,7 +15,8 @@ const Approutes: Routes = [
         {path:':id',component:RecipiesDetailsComponent},
         {path:':id/edit',component:EditRecipiesComponent},
     ]},
-    {path:'shopping', component:ShoppingComponent}
+    {path:'shopping', component:ShoppingComponent},
+    {path:'auth', component:AuthComponent}
 ]
 @NgModule(
     {

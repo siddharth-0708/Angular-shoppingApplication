@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -15,6 +16,9 @@ import { ShoppingServices } from './shopping/shopping.services';
 import { RecipiesService } from './recipies/recipies.service';
 import { AppRouterModule } from './app-router.module';
 import { EditRecipiesComponent } from './recipies/edit-recipies/edit-recipies.component';
+import { DataStorageService } from './shared/data-storage.services';
+import { from } from 'rxjs';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -27,15 +31,17 @@ import { EditRecipiesComponent } from './recipies/edit-recipies/edit-recipies.co
     RecipiesItemComponent,
     ShoppingEditComponent,
     DropDownDirective,
-    EditRecipiesComponent
+    EditRecipiesComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
     ],
-  providers: [ShoppingServices, RecipiesService], //now this can be used in everywhere
+  providers: [ShoppingServices, RecipiesService, DataStorageService], //now this can be used in everywhere
   bootstrap: [AppComponent]
 }) //haha
 export class AppModule { }

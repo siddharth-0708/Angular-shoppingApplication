@@ -21,3 +21,15 @@ Flow is parent--> goes in parent checks <outlet-router> ie the children--> if ye
     ]},
 important**: [routerLink] also acts like <outlet-router>. It will load the corresponding component and look for data in init
 On every router link call, init is called ie component is reloaded.
+
+An Observable is like a Stream (in many languages) and allows to pass zero or more events where the callback is called for each event.
+
+Often Observable is preferred over Promise because it provides the features of Promise and more. With Observable it doesn't matter if you want to handle 0, 1, or multiple events. 
+You can utilize the same API in each case.
+
+Observable also has the advantage over Promise to be cancellable. If the result of an HTTP request to a server or some
+other expensive async operation isn't needed anymore, the Subscription of an Observable allows to cancel the subscription, 
+while a Promise will eventually call the success or failed callback even when you don't need the notification or the result it provides anymore.
+
+An Observible is an array/value that can be manipulated and immediately reflected. A Subject is an EventEmitter that does just that: Emits an event. 
+You can then manipulate multiple observers of different types based on the event.

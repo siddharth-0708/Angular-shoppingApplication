@@ -27,6 +27,10 @@ export class RecipiesService {
       getRecipies(){
           return this.recipies.slice();
       }
+      setRecipies(recipies:recipe[]){
+        this.recipies = recipies;
+        this.recipieChanged.emit(this.recipies.slice())
+      }
       getRecipe(index:number){
         return this.recipies[index]
       }
