@@ -24,6 +24,9 @@ export class HeaderComponent implements OnInit {
   onFetch(){
     this.dataStorageService.fetchRecipie();
   }
+  onLogout(){
+    this.authService.onLogout()
+  }
   ngOnDestroy(): void {
     this.userSub.unsubscribe()
     
