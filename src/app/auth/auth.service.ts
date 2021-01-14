@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { tap } from "rxjs/operators";
 import { user } from "./user.model";
+import {environment} from "../../environments/environment"
 
 interface authResponse {
     kind: string;
@@ -22,7 +23,7 @@ export class AuthService{
     private tokenExpire :any
 
     signUp(email: string, password: string){
-        return this.http.post<authResponse>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCWVxkVniqFpTLClVRjoElCEGw6D61RpoY',{
+        return this.http.post<authResponse>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.fireBaseAPIkey,{
             email: email, //<authResponse> which kind of data will come back
             password: password,
             returnSecureToken: true
@@ -59,7 +60,7 @@ export class AuthService{
         }
     }
     onLogin(email: string, password:string){
-        return this.http.post<authResponse>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWVxkVniqFpTLClVRjoElCEGw6D61RpoY',{
+        return this.http.post<authResponse>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+ environment.fireBaseAPIkey,{
             email: email,
             password: password,
             returnSecureToken: true
